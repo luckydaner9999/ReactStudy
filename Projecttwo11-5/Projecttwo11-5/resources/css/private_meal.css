@@ -1,0 +1,84 @@
+.privatemeal_topbar{
+    background-image: none !important;
+    background-color: #ffffff !important;
+    border:none !important;
+    box-shadow: 0px 1px 2px #ccc !important;
+}
+.privatemeal_back{
+    background-image: none !important;
+    background-color: transparent !important;
+    font-size: 0.8em !important;
+    color: #333;
+}
+.privatemeal_back_img{
+    width:24px;
+    height:24px;
+    margin-top: 2px;
+}
+.privatemeal_back_main{
+    position: relative;
+    top:-5px;
+}
+.private_meal_max_img{
+    background-size: cover;
+    height:200px;
+}
+.private_meal_menu{
+    position: relative;
+    top:-12px;
+    text-align: center;
+}
+.private_meal_menu>span.private_meal_border1{
+    background-color:#fff;
+    border:solid 1px #000;
+    padding: 10px 5px;
+}
+.private_meal_border1 .private_meal_border2{
+    padding: 5px 8px;
+    border:solid 1px #000;
+    font-weight: bolder;
+}
+.private_meal_content{
+    text-align: center;
+    margin: auto;
+}
+.private_dishesName{
+    /*background-color: pink;*/
+    height:30px;
+    line-height: 30px;
+}
+.private_meal_list,.private_meal_service{
+    line-height: 28px;
+}
+ul.private_meal_list li{
+    color: #666;
+}
+ul.private_meal_list li:first-child{
+    font-weight: bolder;
+    color: #000;
+}
+a.private_meal_telephone{
+    color: #000;
+    text-decoration: underline;
+}
+a.private_meal_telephone:hover{
+    text-decoration: none;
+}
+.private_meal_btn{
+    background-color: #000000 !important;
+    margin:10px 20px 10px 0px !important;
+    line-height: 30px !important;
+    color: #FFFFFF !important;
+}
+.private_meal_price{
+    text-align: left;
+    padding-left: 20px;
+}
+.private_meal_bottom{
+    box-shadow:0px -1px 2px #ccc;
+    line-height:50px;
+    height:50px !important;
+}
+.x-button-normal .x-button-label{
+    color: #fff !important;
+}

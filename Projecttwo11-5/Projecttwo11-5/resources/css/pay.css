@@ -1,0 +1,112 @@
+.pay_topbar{
+    background-image: none !important;
+    background-color: #ffffff !important;
+    border:none !important;
+    box-shadow: 0px 0px 3px #ddd;
+}
+.pay_back{
+    background-image: none !important;
+    background-color: transparent !important;
+    font-size: 0.8em !important;
+    color: #333;
+}
+.pay_back_img{
+    width:24px;
+    height:24px;
+    margin-top: 2px;
+}
+.pay_bottom{
+    height:50px;
+    box-shadow: 0px -1px 3px #ddd;
+}
+.pay_price{
+    padding-left: 20px;
+    line-height: 50px;
+}
+.pay_price span{
+    color: #ff393d;
+}
+.pay_btn{
+    background-color: #000000 !important;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.pay_service_info{
+    width:100%;
+}
+.pay_content{
+    width:100%;
+    margin:auto;
+    padding: 10px;
+    box-shadow:0px 1px 3px #ddd;
+}
+.pay_service_info table{
+    width:100%;
+}
+.pay_service_info table tr{
+    line-height: 30px;
+}
+.pay_service_info table tr td:first-child{
+    width:100px;
+}
+.pay_service_info table tr td:last-child{
+    color: #646464;
+}
+
+.pay_tel_service{
+    padding-top: 10px;
+}
+.pay_tel_service>div{
+    float: left;
+}
+.pay_logo img{
+    width:50px;
+    height:50px;
+}
+.pay_text{
+    font-size: 1em;
+    line-height: 50px;
+}
+.pay_type{
+    margin-top: 10px;
+    box-shadow: 0px 0px 3px #e4e4e4;
+}
+.pay_type>p{
+    line-height: 50px;
+    padding-left: 10px;
+    border-bottom: solid 1px #f9f9f9;
+}
+.pay_type_select{
+    width:100%;
+    height:60px;
+    padding:10px;
+}
+.pay_type_select .pay_type_img,.pay_type_text{
+    float: left;
+}
+.pay_type_img{
+   margin-right: 10px;
+}
+.pay_type_img img{
+    width:40px;
+    height:40px;
+}
+.pay_type_text span{
+    color: #dcdcdc;
+    font-size: 0.8em;
+}
+.pay_type_checked{
+    float: right;
+    width:30px;
+    height:30px;
+    margin-top: 5px;
+    border-radius: 50%;
+    border:solid 1px #eee;
+}
+.pay_circle_check{
+    background: url("../images/check.png") no-repeat;
+    background-size: 28px 28px;
+}
+.pay_circle{
+    border:solid 1px #ddd;
+}

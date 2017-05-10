@@ -1,0 +1,30 @@
+.private_topbar{
+    background-image: none !important;
+    background-color: #ffffff !important;
+    border:none !important;
+    box-shadow: 0px 1px 3px #ddd !important;
+}
+.private_back{
+    background-image: none !important;
+    background-color: transparent !important;
+    font-size: 0.8em !important;
+    color: #333;
+}
+.private_back_img{
+    width:24px;
+    height:24px;
+    margin-top: 2px;
+}
+.private_back_main{
+    position: relative;
+    top:-5px;
+}
+.private_banner_carousel{
+    margin:auto;
+    padding:5px 15px 15px 15px;
+    height:100%;
+}
+.private_banner_carousel .x-button{
+    border: none !important;
+    background: none !important;
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <title>私人厨师</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.min.css">
+    <link rel="stylesheet" href="/stylesheets/login.min.css">
+    <link rel="stylesheet" href="/stylesheets/sweet-alert.min.css">
+</head>
+<body>
+<div class="navigator">
+    <div class="inner_container max_nav">
+        <div class="logo">
+            <a href="/"><img src="/images/logo.png" alt=""></a>
+        </div>
+            <ul class="nav nav-tabs nav_right">
+                <li class="list"><a href="#">登录</a></li>
+                <li class="list"><a href="/register">注册</a></li>
+            </ul>
+    </div>
+    <nav class="navbar navbar-default min_nav" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    私人厨师
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="list"><a href="#">首页</a></li>
+                    <li class="list"><a href="#">厨师</a></li>
+                    <li class="list"><a href="#">私人订制</a></li>
+                    <li class="list"><a href="#">我的订单</a></li>
+                    <li class="list"><a href="#">服务说明</a></li>
+                    <li class="login_list"><a href="#">登录</a></li>
+                    <li><a href="/register">注册</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+<div class="content ">
+        <div class="login_quote ">
+            <div class="strip clearfix">
+                <div class="strip_1"></div>
+                <div class="strip_3"></div>
+                <div class="strip_2"></div>
+                <div class="strip_4"></div>
+            </div>
+            <div class="frm_log">
+                <form id="login_form" method="post">
+                    <input type="hidden" name="url" value="<%=url%>">
+                    <div class="form-group">
+                        <input type="telephone" class="form-control" id="telephone" name='telephone'  required="required" placeholder="用户名/手机号">
+                        <div class="check_id check_css"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" name="password" required placeholder="6-12位字母、数字或下划线">
+                        <div class="check_pass check_css"></div>
+                    </div>
+                    <button type="submit" class="btn_login">登录</button>
+                </form>
+
+                <div class="forget">
+                    <a href="#">忘记密码？</a> 或 <a href="/">继续浏览</a>
+                </div>
+
+
+            </div>
+            <div class="strip clearfix">
+                <div class="strip_1"></div>
+                <div class="strip_3"></div>
+                <div class="strip_2"></div>
+                <div class="strip_4"></div>
+            </div>
+        </div>
+</div>
+
+<%include footer.html%>
+
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="/javascripts/login.min.js"></script>
+<script src="/javascripts/sweet-alert.min.js"></script>
+<script>
+    $(function(){
+        $('#login_form').submit(function(){
+            $.ajax({
+                type: 'post',
+                url: '/login',
+                data: $('#login_form').serialize(),
+                timeout: 3000,
+                dataType: 'json',
+                start: function () {
+                },
+                success: function (result) {
+                    if (result.res==0) {
+                        /*alert框*/swal("用户名或密码错误", "", "error");
+                    } else {
+                        /*alert('登录成功')*/
+                        sessionStorage.setItem('tel',$('#telephone').val());
+                        if(result.url==''){
+                            location.href ='/';
+                            sessionStorage.setItem('wpName',result.url);
+
+                        }else if(result.url=='/order?u_id=null'){
+                            location.href ='/order?u_id='+sessionStorage.getItem('tel')+'&price=null';
+                        }else{
+                            sessionStorage.setItem('wpName',result.url);
+                            location.href = result.url;
+                        }
+
+                    }
+                },
+
+                error: function (error) {
+                    /*alert('error')*/
+                }
+
+                // }
+
+            })
+            return false;//阻止提交
+        })
+      })
+
+</script>
+</body>
+</html>

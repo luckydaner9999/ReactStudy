@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/stylesheets/header.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/javascripts/startorder.min.js"></script>
+</head>
+<body>
+<div class="navigator clearfix">
+    <div class="inner_container max_nav clearfix">
+        <div class="logo">
+            <a href="/"><img src="/images/logo.png" alt=""></a>
+        </div>
+        <div class="location">
+            <span class="glyphicon glyphicon-map-marker"></span>
+            <span class="position_txt">苏州</span>
+        </div>
+        <ul class="nav nav-tabs nav_right toggle_list">
+            <li class="list"><a href="/" class="active">首页</a></li>
+            <li class="list"><a href="/cooker">在线下单</a></li>
+            <li class="list"><a href="/service">服务保障</a></li>
+            <li class="list"><a class="myOrder">我的订单</a></li>
+            <li class="login_list"><a href="/login">登录</a></li>
+            <li class="login_list"><a href="/register">注册</a></li>
+        </ul>
+    </div>
+
+    <nav class="navbar navbar-default min_nav" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    私人厨师
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav toggle_list">
+                    <li class="list"><a href="/">首页</a></li>
+                    <li class="list"><a href="/cooker">厨师</a></li>
+                    <li class="list"><a class="myOrder">我的订单</a></li>
+                    <li class="list"><a href="/service">服务说明</a></li>
+                    <li class="login_list"><a href="/login">登录</a></li>
+                    <li class="login_list"><a href="/register">注册</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+<script>
+
+    $(
+            function(){
+                $('.position_txt').html(localStorage.getItem('city'));
+                var id=sessionStorage.getItem('tel');
+                if(id==undefined){
+                    $('.login_list').show()
+                }else {
+                    $('.login_list').empty();
+                    $.ajax({
+                        type: 'get',
+                        url: '/header',
+                        data: {u_telephone: sessionStorage.getItem('tel')},
+                        timeout: 3000,
+                        dataType: 'json',
+                        start: function () {
+                        },
+                        success: function (data) {
+                            $('.toggle_list').append(
+                                    '<li class="user_tel">' +
+                                    '<div class="user_icon"><a href="/selfcenter">' +
+                                    '<img src="/headers/' + data.res01[0].user_icon + '" alt="">' +
+                                    ' </a></div>' +
+                                    '<p id="user_name">' +
+                                    sessionStorage.getItem('tel') +
+                                    '</p>' +
+                                    '<p id="cancel">' +
+                                    '[退出]' +
+                                    '</p>' +
+                                    '</li>'
+                            )
+
+                            $('#cancel').click(
+                                    function(){
+
+//                                location.href='/login'
+                                        $.ajax({
+                                            type: 'post',
+                                            url: '/header',
+                                            data: {u_telephone:sessionStorage.getItem('tel')},
+                                            timeout: 3000,
+                                            dataType: 'json',
+                                            start: function () {
+                                            },
+                                            success: function (data) {
+                                                if(data.result==1){
+                                                    sessionStorage.clear();
+                                                    location.href='/';
+                                                }
+                                            },
+
+                                            error: function (error) {
+
+                                            }
+                                            // }
+                                        })
+                                        return false;//阻止提交
+
+                                    }
+                            )
+                        },
+
+                        error: function (error) {
+                        }
+
+                        // }
+
+                    })
+                    return false;//阻止提交)
+                }
+
+    }
+
+
+
+    )
+
+
+
+
+
+</script>
+</body>
+</html>

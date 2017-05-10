@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>私人厨师</title>
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.min.css">
+    <link rel="stylesheet" href="/stylesheets/header.min.css">
+    <link rel="stylesheet" href="/stylesheets/order_details.min.css">
+    <link rel="stylesheet" href="/stylesheets/calendar.min.css">
+    <link rel="stylesheet" href="/stylesheets/sweet-alert.min.css">
+    <script src="/javascripts/sweet-alert.min.js"></script>
+</head>
+<body>
+
+<%include header.html%>
+<div class="content">
+    <div class="order_details clearfix">
+        <div class="dishes">
+            <ul>
+                <li><h4>菜单</h4></li>
+                <hr>
+                <%
+                if(res.length==0){
+                %>
+                <div>对不起,没有匹配的结果</div>
+
+                <%
+                }else{
+                for(var i=0;i<=res.length-1;i++){
+                %>
+                <li class="dishes_name"><%=res[i].dishes_name%></li>
+                <%if(res[i].cid<100){%>
+                <a class="delete">删除
+                    <p><%=res[i].user_menu%></p>
+                </a>
+
+                <% }%>
+                <span class="u_telephone"><%=res[i].u_telephone%></span>
+                <p class="user_menu"><%=res[i].user_menu%></p>
+                <a class="cid"><%=res[i].cid%></a>
+
+                <hr>
+
+                <%
+                }
+                }
+                %>
+            </ul>
+            <div class="price">
+                <p>应付：<span><%=res3%></span>元</p>
+            </div>
+        </div>
+        <div class="info">
+            <div class="address clearfix">
+                <table>
+                    <tr>
+                        <td>订单详情</td>
+                        <td>
+                            <button type="button" data-toggle="modal" data-target="#myModal">
+                                <span class="glyphicon glyphicon-plus-sign"></span> 添加地址
+                            </button>
+
+                        </td>
+                    </tr>
+                </table>
+                <hr>
+                <div class="one">
+                <%
+                if(res2.length==0){
+                %>
+                <div>对不起,没有匹配的结果</div>
+
+
+                <%
+                }else{
+                for(var i=0;i<=res2.length-1;i++){
+                %>
+                <div class="address_check">
+                    <div class="contact">
+                        <span class="name">
+                           <p class="u_name">姓名:<span><%=res2[i].user_name%></span>&nbsp;</p>
+                           <p class="u_tele">电话:<span><%=res2[i].telephone%> </span>&nbsp;</p>
+                        </span>
+                        <br>
+                        <span class="address">地址:<%=res2[i].province%> <%=res2[i].city%><%=res2[i].area%><%=res2[i].address_detail%></span>
+                    </div>
+                    <div class="operation">
+                        <a class="delete_address">删除
+                            <p><%=res2[i].address_id%></p>
+                        </a>
+
+                    </div>
+                </div>
+                <%
+                }
+                }
+                <!--end else-->
+                %>
+            </div>
+            </div>
+            <div class="dinner_time">
+                <table>
+                    <tr>
+                        <td> 日期:
+                            <input type="text" id="dt" placeholder="请选择日期">
+                            <div id="dd"></div>
+                        </td>
+                        <td>
+                            <form class="clearfix"><span class="time_">时间：</span>
+                                <select name="cars" class="dinner_time dinner_time_1">
+                                    <option value="1">早饭8:00-10:00</option>
+                                    <option value="2">午饭12:00-14:00</option>
+                                    <option value="3">晚饭17:00-22:00</option>
+                                    <option value="4">夜宵22:00-23:00</option>
+                                </select>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div class="remarks clearfix">
+                <span>备注：</span>
+             <div class="remarks_text" contenteditable="true"></div>
+             <div class="tag">
+                 <ul>
+                     <li>偏甜 &nbsp;&nbsp;</li>
+                     <li>偏辣 &nbsp;&nbsp;</li>
+                     <li>偏咸  &nbsp;&nbsp;</li>
+                     <li>有小孩 &nbsp;&nbsp;</li>
+                     <li>有老人 &nbsp;&nbsp;</li>
+                 </ul>
+             </div>
+            </div>
+
+            <div class="pay">
+                <p>付款方式:
+                    <span >在线支付</span></p>
+            </div>
+            <hr>
+            <div class="go_pay">
+                <a >去付款</a>
+            </div>
+        </div>
+    </div>
+
+    <!--模态框-->
+    <!-- Modal -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加新地址</h4>
+                </div>
+                <div class="modal-body">
+
+                    <table>
+                        <tr>
+                            <td>联系人：</td>
+                            <td><input type="text" placeholder="请输入姓名" name="user_name" id="user_name_2" required></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="radio" name="sex" value="男" class="sex"> 先生
+                                <input type="radio" name="sex" value="女" class="sex" checked> 女士
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>服务地址</td>
+                            <td><!--地址下拉列表-->
+                                <div id="city_5">
+                                    <select class="prov" name="province"></select>
+                                    <select class="city" name="city"></select>
+                                    <select class="dist" id="area"></select>
+                                </div>
+                                <!--地址下拉列表--></td>
+                        </tr>
+                        <tr>
+                            <td>详细地址：</td>
+                            <td><input type="text" placeholder="请输入小区、楼号、门牌号" name="address_detail" class="address_detail" required></td>
+                        </tr>
+                        <tr>
+                            <td>手机号码：</td>
+                            <td><input type="text" required placeholder="请输入11位手机号" id="telephone"  pattern="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$" required="required"></td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button  class="btn btn_save" type="button" id="save">保存</button>
+                    <button type="button" class="btn btn_cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<%include footer.html%>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="/javascripts/calendar.min.js"></script>
+<script src="/javascripts/date.min.js"></script>
+<script src="/javascripts/jquery.cityselect.js"></script>
+<script>
+$(function () {
+    $('.u_telephone').hide();
+    $('.cid').hide();
+    $('.user_menu').hide();
+    $('.pay span').click(function () {
+        $(this).toggleClass("active");
+    })
+   $('.tag ul li').click(function () {
+       $('.remarks_text').append($(this).text());
+   })
+
+})
+
+</script>
+<script>
+    $(function() {
+        $("#city_5").citySelect({
+            url: {"citylist": [
+                {"p": "江苏省", "c": [{"n": "南京市","a":[{"s":"玄武"},{"s":"白下区"},{"s":"秦淮区"},{"s":"建邺区"}]},
+                                     {"n": "无锡市", "a": [{"s": "崇安区"}, {"s": "南长区"},{"s": "北塘区"},{"s": "锡山区"}]},
+                                     {"n": "苏州市","a": [{"s": "沧浪区"}, {"s": "平江区"},{"s": "吴中区"},{"s": "虎丘区"}]}]},
+                {"p": "上海市", "c": [{"n": "上海市","a":[{"s":"黄浦区"},{"s":"卢湾区"},{"s":"徐汇区"},{"s":"长宁区"}]}]},
+                {"p": "北京市", "c": [{"n": "北京市","a":[{"s": "西城区"}, {"s": "崇文区"}, {"s": "朝阳区"}]}]},
+                {"p": "广东省", "c": [{"n": "广州市","a":[{"s":"荔湾区"},{"s":"越秀区"},{"s":"海珠区"},{"s":"天河区"},{"s":"白云区"}]},
+                                     {"n": "深圳市","a":[{"s":"罗湖区"},{"s":"福田区"},{"s":"南山区"},{"s":"宝安区"}]},
+                                     {"n": "珠海市","a":[{"s":"香洲区"},{"s":"斗门区"},{"s":"金湾区"}]},
+                                     {"n": "佛山市","a":[{"s":"禅城区"},{"s":"南海区"},{"s":"顺德区"},{"s":"三水区"}]}]},
+            ]},
+            prov: "江苏省",
+            city: "南京市",
+            dist: "玄武区",
+            nodata: ""
+        });
+    });
+</script>
+<!--去付款-->
+<script>
+    $(function(){
+        var price=$('.price p span').text();
+        $('.position_txt').html(localStorage.getItem('city'));
+        $("div.address_check").click(function(){
+            var name;
+            var tel;
+            var addr;
+            $(this).addClass("active").siblings().removeClass("active");
+             name=$(this).find('p.u_name span').text();
+             tel=$(this).find('p.u_tele span').text();
+             addr=$(this).find('.address').html();
+            var dinner_time=$('option:checked').html();
+            /*alert(dinner_date)
+            alert(message)*/
+            $('.go_pay').click(function(){
+                var cid=$('.cid').val();
+                /*alert(cid);*/
+                        var d = new Date();
+                        var M=d.getMinutes(); //获取分
+                        M=M>9?M:"0"+M;
+                        var H=d.getHours();
+                         H=H>9?H:"0"+H;
+                        var S=d.getHours();
+                            S=S>9?S:"0"+S;
+                        var str = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+"  "+H+":"+M +":"+S+""
+                        function createFileName(){
+                            var date=new Date();
+                            var ran=Math.random();
+                            var datea=new Date('1970-1-1');
+                            var _name=ran.toString()+(date-datea);
+                            // _name=_name.split(".");
+                            return _name;
+                        }
+                        var number=createFileName();
+                       /* alert(number)*/
+                            $.ajax({
+                                type: 'post',
+                                url: '/update_user_menu',
+                                data:{
+                                    cid:$(".cid").html(),
+                                    u_t:$(".u_telephone").html(),
+                                    time:str,number:number,_name:name,
+                                    tel:tel,u_address:addr,
+                                    _message:$('.remarks_text').text(),
+                                    dinner_date:$('#dt').val(),
+                                    dinner_time:dinner_time,
+                                    price:price},
+                                timeout: 3000,
+                                dataType: 'json',
+
+                                success: function (result) {
+                                    if(result.res==1){
+                                        /*alert('付款成功');*/
+                                        swal("付款成功","","success");
+                                    }else{
+                                        /*alert('update fail')*/
+                                        swal("付款失败","","error")
+                                    }
+
+                                },
+                                error: function (error) {
+                                   /* alert('error')*/
+                                    swal("未知错误","","error")
+                                }
+
+                            })
+                        return false;
+                    })
+        });
+
+
+
+    })
+</script>
+
+<script>
+    $('.delete').click(function(){
+        $.ajax({
+            type: 'get',
+            url: '/delete_dishes',
+            data:{delete:$(this).find('p').html()},
+            timeout: 3000,
+            dataType: 'json',
+
+            success: function (result) {
+             if(result.res==0){
+                 /*alert('删除成功')*/
+                location.reload();
+             }else{
+                 /*alert('删除失败')*/
+                 swal("删除失败","","error")
+             }
+
+            },
+            error: function (error) {
+                /*alert('error')*/
+                swal("未知错误","","error")
+            }
+            // }
+
+        })
+        return false;
+    })
+</script>
+<script>
+    $('.delete_address').click(function(){
+//        alert($('.delete_address p').html())
+        $.ajax({
+            type: 'post',
+            url: '/delete_dishes',
+            data:{address_id:$(this).find('p').html()},
+            timeout: 3000,
+            dataType: 'json',
+
+            success: function (result) {
+                if(result.res==0){
+                    window.location.reload()
+                }else{
+                    /*alert('删除失败')*/
+                    swal("删除失败","","error")
+                }
+
+            },
+            error: function (error) {
+                /*alert('error')*/
+                swal("未知错误","","error")
+            }
+            // }
+
+        })
+        return false;//阻止提交
+
+
+    })
+</script>
+<script>
+
+    $('#save').click(function() {
+               /* alert($('.sex:checked').val())*/
+
+                $.ajax({
+                    type: 'post',
+                    url: '/add_address',
+                    data: {
+                        user_name:$('#user_name_2').val(),
+                        sex:$('.sex:checked').val(),
+                        prov:$('.prov option:selected').html(),
+                        city:$('.city option:selected').html(),
+                        area:$('#area option:selected').html(),
+                        address_detail:$('.address_detail').val(),
+                        telephone:$('#telephone').val(),
+                        u_t:sessionStorage.getItem('tel')
+                    },
+                    timeout: 3000,
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log('mmmnn'+JSON.stringify(result))
+                        window.location.reload()
+
+                    },
+                    error: function (error) {
+                        swal("未知错误","","error")
+                    }
+                    // }
+
+                })
+                return false;
+
+            })
+
+
+
+
+
+</script>
+</body>
+</html>

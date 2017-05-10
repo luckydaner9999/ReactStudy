@@ -1,0 +1,128 @@
+.details_container01{
+    width: 100%;
+    font-size: 1em;
+    box-shadow: 0px 2px 3px #ddd;
+}
+.details_icon_container01{
+    padding:10px;
+    float: left;
+}
+.details_icon_container01 img{
+    width: 80px;
+    height: 80px;
+}
+.details_cookers01{
+    float: left;
+    padding-top: 20px;
+    line-height: 32px;
+    width:60%;
+}
+.details_cookers01 p{
+    height:20px;
+    line-height: 20px;
+}
+.dishes_level{
+    text-align:left;
+}
+.star_level{
+    width: 50%;
+    height:20px;
+    float: left;
+    text-align: left;
+    border: none;
+}
+.details_profession img{
+    width: 70px;
+    height:18px;
+    padding-top: 5px;
+}
+.dishes_score{
+    width: 50%;
+    height:30px;
+    float: left;
+    line-height: 25px;
+}
+.s_dishes{
+    height:40px !important;
+    border:solid 1px #eee;
+    text-align: center !important;
+   /* border:solid 1px red;*/
+
+}
+.dishes_container{
+    height:100px;
+}
+.div_dishes_container{
+    width:50%;
+    float: left;
+    height:100px;
+}
+.div_dishes_container img{
+    width: 100px;
+    height: 100px;
+}
+.dishes_name_container{
+    width:50%;
+    float: left;
+    text-align: right;
+    font-size: 1em;
+}
+.dishes_name{
+    height:50px;
+    line-height: 50px;
+}
+.check_btn{
+    height:50px;
+    line-height: 50px;
+    background: url("../images/check-no.png") no-repeat;
+    background-position: right;
+    background-size: 24px 24px;
+}
+.check_btn_checked{
+    height:50px;
+    line-height: 50px;
+    background: url("../images/check.png") no-repeat;
+    background-position: right;
+    background-size: 28px 28px;
+}
+.dishes_cart{
+    height:50px;
+    line-height:50px;
+    padding:8px 10px;
+}
+.count{
+    width:20px;
+    height:20px;
+    border: solid 1px #ff393d;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #ff393d;
+    position:relative;
+    color: white;
+    text-align: center;
+    left:30px;
+    top:-50px;
+    line-height: 20px;
+}
+.shuxian{
+    color:#CCCCCC;
+    padding-left: 10px;
+}
+.chose_btn{
+    width: 89%;
+    height:30px;
+    float: left;
+    text-align: right;
+
+}
+.chose_dishes_panel{
+    background-color: black;
+    height:50px;
+}
+.go_order_btn{
+    background-color: #ff393d !important;
+    color: white !important;
+    border: none !important;
+    height:50px !important;
+    border-radius: 0px !important;
+}

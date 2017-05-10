@@ -1,0 +1,28 @@
+.register_form{
+    width:90%;
+    height:300px;
+    margin:auto;
+}
+.register_close{
+    padding:10px;
+    height:50px;
+}
+.register_logo{
+    text-align:center;
+    min-height:130px;
+}
+.register_close_img{
+    width:30px;
+    height:30px;
+}
+.btn_register_submit{
+    margin-top: 40px;
+    border:solid 1px #ff393d !important;
+    background-color: #ff393d !important;
+    min-height: 2.5em;
+    padding: .7em .4em .4em .4em;
+}
+.btn_register_submit:active{
+    border:solid 1px #ff393d !important;
+    background-color: transparent !important;
+}

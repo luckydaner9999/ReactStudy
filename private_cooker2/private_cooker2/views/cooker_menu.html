@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <title>私人厨师</title>
+    <link rel="stylesheet" href="/stylesheets/sweet-alert.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.min.css">
+    <link rel="stylesheet" href="/stylesheets/cooker_menu.min.css">
+    <link rel="stylesheet" href="/stylesheets/touchTouch.min.css">
+    <link rel="stylesheet" href="/stylesheets/cart.css">
+    <script src="/javascripts/sweet-alert.min.js"></script>
+</head>
+<body>
+    <%include header.html%>
+<div class="content clearfix">
+  <%include toolbar.html%>
+    <div class="message clearfix">
+        <div class="cooker_evaluate clearfix"><!--evaluate评价-->
+            <div class="cooker_info">
+                <!--名片详情-->
+                <div class="parinforma cssshadow">
+                    <div class="closebtn"></div>
+                    <div class="showLeft">
+                        <img class="row1" src="/images/<%=res[0].c_icon%>" >
+                    </div>
+                    <div class="showRight">
+                        <div class="huncontent">
+                          大厨姓名：<%=res[0].c_name%> <br>
+                          擅长菜系：<%=res[0].profession%> <br>
+                          大厨评分：4.7分 <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                             <br>
+                        </div>
+                    </div>
+                </div>
+                <!--名片详情-->
+                <div class="cooker_icon" id="pichuan">
+                    <img class="row1" src="/images/<%=res[0].c_icon%>" alt="">
+                </div>
+                <div class="evaluate">
+                    <p><%=res[0].c_name%></p>
+                    <p><span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        4.7分</p>
+                    <p>擅长菜系：<%=res[0].profession%><span></span></p>
+                </div>
+            </div>
+            <div class="collection">
+                <button class="collect1">收藏 <span class="glyphicon glyphicon-heart"></span></button>
+                <button class="collect2" style="color: #f9b015;">收藏 <span class="glyphicon glyphicon-heart red_heart"></span></button>
+            </div>
+        </div>
+        <div class="cooker_evaluate_1 clearfix">
+            <div class="cooker_info min_cooker_info clearfix">
+                <div class="cooker_icon min_cooker_icon">
+                    <img src="/images/<%=res[0].c_icon%>" alt="">
+                </div>
+                <div class="evaluate min_evaluate">
+                    <p><%=res[0].c_name%></p>
+                    <p><span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        4.7分</p>
+                    <p>擅长菜系：<span><%=res[0].profession%></span></p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="menu clearfix">
+            <div class="menu_title">
+                <h4>菜单</h4>
+            </div>
+
+            <%
+            if(res02.length==0){
+            %>
+            <div>对不起,没有匹配的结果</div>
+
+
+            <%
+            }else{
+            for(var i=0;i<=res02.length-1;i++){
+            %>
+            <div class="menu_list ">
+                <!--<div>
+                    <img src="/images/<%=res02[i].di%>" alt="">
+                </div>-->
+                <section id="stuck_container">
+                </section>
+                <div class="gallery">
+                    <a href="/images/<%=res02[i].di%>" class="gall_item">
+                        <img src="/images/<%=res02[i].di%>" alt="">
+                    </a>
+                </div>
+
+                <div class="dishes_name">
+                    <p><%=res02[i].dn%></p>
+                    <button class="add_button cd-add-to-cart" >+
+                        <a href="#"><%=res02[i].dn%></a>
+                        <a href=""><%=res[0].c_id%></a>
+                        <a><img src="/images/<%=res02[i].di%>" alt=""></a>
+                    </button>
+                </div>
+            </div>
+            <%
+            }
+            }
+
+            <!--end else-->
+            %>
+
+        </div></div>
+    <div class="clearfix"></div>
+
+
+    <div class="comment clearfix">
+        <div class="menu_title">
+            <h4>评价<span>(共 <span><%=count[0].num%></span>  条)</span></h4>
+        </div>
+        <%
+        if(res03.length==0){
+        %>
+        <div>对不起,暂时没有评论</div>
+
+
+        <%
+        }else{
+        for(var i=0;i<=res03.length-1;i++){
+        %>
+        <div class="comment_list clearfix">
+            <div class="u_p">
+                <img src="/headers/<%=res03[i].ui%>" alt="">
+            </div>
+            <div class="comment_content">
+                <p><%=res03[i].ut%>
+                    <span>星级:<%=res03[i].level%></span>
+                </p>
+                <%if(res03[i].image){%>
+                <div class="comment_picture">
+                    <div class="comment_picture_single">
+                        <img src="/upload/<%=res03[i].image%>" alt="">
+                    </div>
+                </div>
+
+                <% }%>
+
+
+                <p><%=res03[i].cc%></p>
+            </div>
+        </div>
+        <%
+        }
+        }
+
+        <!--end else-->
+        %>
+
+        <!--<div class="cart">
+            <div class="cart_logo">
+                <img src="/images/cart.png" alt="">
+            </div>
+            <button class="place_order" ><a >去下单</a></button>
+        </div>-->
+        <div class="cart cd-cart-container empty">
+            <a href="#0" class="cd-cart-trigger">
+                <ul class="count"> <!-- cart items count -->
+                    <li>0</li>
+                    <li>0</li>
+                </ul> <!-- .count -->
+                </ul> <!-- .count -->
+            </a>
+
+            <div class="cd-cart">
+                <div class="wrapper">
+                    <header>
+                        <h4>购物车</h4>
+                        <span class="undo">Item removed. <a href="#0">Undo</a></span>
+                    </header>
+                    <div class="body">
+                        <ul>
+                            <!-- products added to the cart will be inserted here using JavaScript -->
+                        </ul>
+                    </div>
+
+                    <footer>
+                        <a href="#0" class="place_order checkout btn"><em>去下单</em></a>
+                    </footer>
+                </div>
+            </div> <!-- .cd-cart -->
+        </div>
+    </div>
+</div>
+
+<%include footer.html%>
+</body>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="/javascripts/main.js"></script>
+<!--picture reload-->
+<script src="/javascripts/touchTouch.jquery.js"></script>
+<script>
+    $(function () {
+        $('.search_input').focus(function () {
+            location.href='/cooker';
+        })
+        $('.gallery .gall_item').touchTouch();
+    })
+</script>
+<!--picture reload-->
+<!--我的订单-->
+<script src="/javascripts/startorder.min.js"></script>
+<!--名片-->
+<script type="text/javascript">
+
+   $(function () {
+       $("#pichuan .row1").click(function(){
+           var picIndex=$("#pichuan .row1").index($(this));
+           $(".parinforma").hide();
+           $("#pichuan").hide();
+           $(".parinforma").eq(picIndex).slideDown("normal");
+       })
+       $(".closebtn").click(function(){
+           $(".parinforma").hide();
+           $("#pichuan").show();
+       })
+   })
+</script>
+<!--名片-->
+<!--收藏-->
+<script>
+    $(function(){
+        $('.position_txt').html(localStorage.getItem('city'));
+        $('.collect2').hide();
+        $('.collect1').click(function () {
+            $('.collect1').hide();
+            $('.collect2').show();
+            /*alert框*/swal("收藏成功", "", "success");
+            if(sessionStorage.getItem('tel')==undefined){
+                location.href='/login?url=/cooker_detail?index=<%=res[0].c_id%>';
+            }else {
+                $.ajax({
+                    type: 'get',
+                    url: '/collect',
+                    data:{index:'<%=res[0].c_id%>',u_id:sessionStorage.getItem('tel'),statu:1},
+                    timeout: 3000,
+                    dataType: 'json',
+
+                    success: function (result) {
+
+                       /* alert(JSON.stringify(result));*/
+                    },
+                    error: function (error) {
+                       /* alert('error')*/
+                    }
+                    // }
+
+                })
+//             location.href='/collect?c_id=<%=res[0].c_id%>&u_id='+sessionStorage.getItem('tel')+'&statu=1';
+            }
+
+        })
+        $('.collect2').click(function () {
+            $('.collect2').hide();
+            $('.collect1').show();
+            /*alert框*/swal("取消收藏", "", "success");
+            $.ajax({
+                type: 'get',
+                url: '/collect',
+                data:{index:'<%=res[0].c_id%>',u_id:sessionStorage.getItem('tel'),statu:0},
+                timeout: 3000,
+                dataType: 'json',
+
+                success: function (result) {
+
+                    /*alert(JSON.stringify(result));*/
+                },
+                error: function (error) {
+                   /* alert('error')*/
+                }
+                // }
+
+            })
+//            location.href='/collect?c_id=<%=res[0].c_id%>&u_id='+sessionStorage.getItem('tel')+'&statu=0';
+        })
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <title>私人厨师</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.min.css">
+    <link rel="stylesheet" href="/stylesheets/header.min.css">
+    <link rel="stylesheet" href="/stylesheets/cooker.min.css">
+    <link rel="stylesheet" href="/stylesheets/sweet-alert.min.css">
+</head>
+<body>
+
+<%include header.html%>
+
+<div class="content">
+    <div class="toolbar clearfix">
+        <div class="now_position">
+            <span class="glyphicon glyphicon-map-marker"></span>
+            <span> <span class="address_city">文荟人才公寓</span> <a class="position_address" data-toggle="modal" data-target="#myModal">[切换地址]</a></span>
+        </div>
+        <div class="search">
+            <div class="form-group" >
+                <form id="form">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <input type="text" class="form-control search_input" name="search_input" placeholder="请输入菜系">
+                    <button type="submit" class="search_txt">搜索</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!--模态框-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">切换地址</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="change_address">
+                        <span class="check_address address01">苏州 菁英公寓</span>
+                        <span class="radio_check check01"></span>
+                    </div>
+                    <div class="change_address">
+                        <span class="check_address address02">苏州 文星公寓</span>
+                        <span class="radio_check check02"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn_save">确定</button>
+                    <button type="button" class="btn btn_cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--模态框-->
+    <div class="filter">
+       <div class="filter_top">
+          <ul class="filter_fun">
+              <li><a href="#" class="text total active">综合</a></li>
+              <li><a href="#" class="order_num">预订次数
+               <span class="glyphicon glyphicon-arrow-up order"></span>
+              </a></li>
+          </ul>
+       </div>
+
+        <div class="cooker_list">
+            <div class="cooker clearfix">
+            <%
+            if(cookers.length==0){
+            %>
+            <div>对不起,没有匹配的结果</div>
+
+
+            <%
+            }else{
+            for(var i=0;i<=cookers.length-1;i++){
+            %>
+
+                <a href="/cooker_detail?index=<%=cookers[i].c_id%>">
+                <div class="dishes clearfix">
+                  <img src="/images/<%=cookers[i].c_images%>" alt="">
+                  <div class="cooker_icon">
+                            <img class="dish_cook1" src="/images/<%=cookers[i].c_icon%>" alt="">
+                            <p class="cooker_name"><%=cookers[i].c_name%></p>
+                        </div>
+                  <div class="cooker_level">
+
+                      <p>擅长：<%=cookers[i].profession%></p>
+
+                      <p>星级：
+                          <%for(var j=1;j<=cookers[i].star_level;j++){%>
+                          <span class="glyphicon glyphicon-star txt_color"></span>
+                          <%}%>
+                      </p>
+                  </div>
+                  <div class="cooker_order">
+                      <p>预订数</p>
+                      <p class="txt_color"><%=cookers[i].order_count%></p>
+                  </div>
+                </div>
+                </a>
+
+                <%
+                }
+                }
+                <!--end else-->
+                %>
+            </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="pages">
+
+            <%
+            for(var i=1;i<=pageAcount;i++){
+            %>
+            <!--<a href="/articles/?index=<%=i%>"><%=i%></a>-->
+            <a href="#"><%=i%></a>
+            <%
+            }
+            %>
+
+        </div>
+
+    </div>
+</div>
+<%include footer.html%>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="/javascripts/sweet-alert.min.js"></script>
+<!--分页-->
+<script>
+//    1<!--分页-->
+    $(function(){
+        $('.position_txt').html(localStorage.getItem('city'));
+        $('.search_input').focus();
+        $('.pages a').click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            $.ajax({
+                type: 'post',
+                url: '/cooker',
+                data: {index:$(this).text()},
+                timeout: 3000,
+                dataType: 'json',
+
+                success: function (data) {
+                    loadArticle(data);
+                },
+                error: function (error) {
+                    /*alert('error')*/
+                }
+
+                // }
+
+            })
+            return false;//阻止提交
+        })
+
+    })
+    function loadArticle(data){
+        $('.cooker').empty();
+        for(var i=0;i<=data.cookers.length;i++){
+            $('.cooker').append(
+                    '<a href="/cooker_detail?index='+data.cookers[i].c_id+'" class=".one">'+
+                    '<div class="dishes">'+
+                    '<img src="/images/'+data.cookers[i].c_images+'" alt="">'+
+                    '<div class="cooker_icon">'+
+                    '<img class="dish_cook1" src="/images/'+data.cookers[i].c_icon+'" alt="">'+
+                    '<p class="cooker_name">'+data.cookers[i].c_name+'</p>'+
+                    '</div>'+
+                    '<div class="cooker_level">'+
+                    '<p>擅长:'+data.cookers[i].profession+'</p>'+
+                    '<p>星级：'+
+                    '<span class="glyphicon glyphicon-star txt_color"></span>'+
+                    '<span class="glyphicon glyphicon-star txt_color"></span>'+
+                    '<span class="glyphicon glyphicon-star txt_color"></span>'+
+                    '<span class="glyphicon glyphicon-star txt_color"></span>'+
+                    '<span class="glyphicon glyphicon-star txt_color"></span>'+
+                    '</p>'+
+                    '</div>'+
+                    '<div class="cooker_order">'+
+                    '<p>预订数</p>'+
+                    ' <p class="txt_color">'+data.cookers[i].order_count+'</p>'+
+                    '</div>'+
+                    '</div>'+
+                    '</a>'
+
+
+            )}}
+</script>
+<!-- 2预定次数排序-->
+<script>
+
+    $(function(){
+        $('.pages a:first-child').addClass('active');
+        $('.filter_fun li a').click(function () {
+            $(this).addClass('active').parents().find('a').removeClass('active');
+        })
+        $('.order_num').click(function(){
+                    $(this).toggleClass('active');
+                    $('.order').toggleClass('glyphicon-arrow-down').css({color:'#f9b015'});
+                    if( $('.order').hasClass('glyphicon-arrow-down')){
+                        $.ajax({
+                            type: 'post',
+                            url: '/arrange',
+                            data:{content:1},
+                            timeout: 3000,
+                            dataType: 'json',
+
+                            success: function (data) {
+                                getPages01(data);
+                                getSearchCooker(data);
+
+                            },
+                            error: function (error) {
+                                /*alert('error')*/
+                            }
+                            // }
+
+                        })
+                        return false;//阻止提交
+                        function getPages01(data) {
+                            $(".pages").empty();
+                            for(var j=1;j<=data.pageAcount;j++){
+                                $('.pages a:first-child').addClass('active');
+                                $(".pages").append('<a href="#">'+j+'</a>');
+                                $('.pages a').click(function(){
+                                    $(this).addClass('active').siblings().removeClass('active');
+                                    $.ajax({
+                                        type:'post',
+                                        url: '/arrange',
+                                        data: {index:$(this).text()},
+                                        timeout: 3000,
+                                        dataType: 'json',
+                                        success: function (data) {
+
+
+                                            getSearchCooker(data)
+
+
+//                    location.href='/search'
+                                        },
+                                        error: function (error) {
+                                            /*alert('error')*/
+                                        }
+                                        // }
+
+                                    });
+                                    return false;//阻止提交
+
+                                })}
+
+
+                        }
+
+                    }else{
+                        $.ajax({
+
+                            type: 'post',
+                            url: '/arrange_two',
+                            data:{content:1},
+                            timeout: 3000,
+                            dataType: 'json',
+
+                            success: function (data) {
+                                getPages01(data);
+                                getSearchCooker(data);
+
+                            },
+                            error: function (error) {
+                                /*alert('error')*/
+                            }
+                            // }
+
+                        })
+                        return false;//阻止提交
+                        function getPages01(data) {
+                            $(".pages").empty();
+                            for(var j=1;j<=data.pageAcount;j++){
+                                $('.pages a:first-child').addClass('active');
+                                $(".pages").append('<a href="#">'+j+'</a>');
+                                $('.pages a').click(function(){
+                                    $(this).addClass('active').siblings().removeClass('active');
+                                            $.ajax({
+                                                type:'post',
+                                                url: '/arrange_two',
+                                                data: {index:$(this).text()},
+                                                timeout: 3000,
+                                                dataType: 'json',
+                                                success: function (data) {
+
+
+                                                    getSearchCooker(data)
+
+
+//                    location.href='/search'
+                                                },
+                                                error: function (error) {
+                                                   /* alert('error')*/
+                                                }
+                                                // }
+
+                                            });
+                                            return false;//阻止提交
+
+                                        }
+
+
+
+
+                                )}
+
+
+                        }
+                    }
+                }
+        )
+
+//3综合排序
+        $(function(){
+            $('.pages a:first-child').addClass('active');
+            $('.total').click(
+                    function(){
+                        $('.order').css({color:'#333'});
+                        $(this).addClass('active');
+                        $.ajax({
+                            type: 'post',
+                            url: '/arrange_total',
+                            data:{content:1},
+                            timeout: 3000,
+                            dataType: 'json',
+
+                            success: function (data) {
+                                getPages01(data);
+                                getSearchCooker(data);
+
+                            },
+                            error: function (error) {
+                               /* alert('error')*/
+                            }
+                            // }
+
+                        })
+                        return false;//阻止提交
+                        function getPages01(data) {
+                            $(".pages").empty();
+                            for(var j=1;j<=data.pageAcount;j++){
+                                $('.pages a:first-child').addClass('active');
+                                $(".pages").append('<a href="#">'+j+'</a>');
+                                $('.pages a').click(function(){
+                                    $(this).addClass('active').siblings().removeClass('active');
+                                    $.ajax({
+                                        type:'post',
+                                        url: '/arrange_total',
+                                        data: {index:$(this).text()},
+                                        timeout: 3000,
+                                        dataType: 'json',
+                                        success: function (data) {
+
+
+                                            getSearchCooker(data)
+
+
+//                    location.href='/search'
+                                        },
+                                        error: function (error) {
+                                            /*alert('error')*/
+                                        }
+                                        // }
+
+                                    });
+                                    return false;//阻止提交
+
+                                })}
+
+
+                        }
+
+
+
+
+
+                    }
+            )})
+
+
+
+// 4  搜索分页
+        $('.search_txt').click(function(){
+            $(".pages").empty();
+            $.ajax({
+
+                type: 'post',
+                url: '/search',
+                data: {search_input:$('.search_input').val()},
+                timeout: 3000,
+                dataType: 'json',
+                success: function (data) {
+
+                    getPages(data)
+                    getSearchCooker(data)
+
+//                    location.href='/search'
+                },
+                error: function (error) {
+                   /* alert('error')*/
+                }
+                // }
+
+            });
+            return false;//阻止提交
+        })
+        // 5  切换地址
+        $('.position_address').click(function () {
+            $.ajax({
+                type: 'post',
+                url: 'change_position',
+                data:{u_id:sessionStorage.getItem('tel')},
+                timeout: 3000,
+                dataType: 'json',
+                success: function (data) {
+                    /*alert('data//'+JSON.stringify(data));*/
+                    $('.modal-body').empty();
+                    var address01;
+
+                    var clicked;
+                    for(var i=0;i<data.res.length;i++){
+                        $('.modal-body').append(' <div class="change_address c_address0'+i+'">'+
+                                '<span class="check_address address0'+i+'"><span class="ad01">'+data.res[i].area+'</span><span> '+data.res[i].address_detail+'</span>'+
+                                '<span class="radio_check check0'+i+'"></span>'+
+                                '<input type="hidden" value="'+data.res[i].address_id+'" class="area">'+
+                                '</span>'+
+                                '</div>');
+                    }
+                    $('.check_address').click(function () {
+                        $(this).children().toggleClass('active');
+                        $(this).siblings().children().removeClass('active');
+                        address02 = $(this).find('.ad01').text();
+                        address01 = $(this).text();
+                        clicked = 1;
+                    });
+                    $('.btn_save').click(function () {
+                        $('#myModal').modal('hide');
+                        if(clicked==1){
+                            $('.address_city').html(address01);
+                            $.ajax({
+                                type: 'POST',
+                                url: '/arrange_position',
+                                data:{tel:sessionStorage.getItem('tel'),position:address02},
+                                timeout: 3000,
+                                dataType: 'json',
+                                success: function (data1) {
+                                    /*alert('bbbb'+JSON.stringify(data1));
+                                    alert(data1.pageAcount);*/
+                                    $(".pages").empty();
+                                    var data=data1;
+                                    for(var j=1;j<=data.pageAcount;j++){
+                                        $('.pages a:first-child').addClass('active');
+                                        $(".pages").append('<a href="#">'+j+'</a>');
+                                        $('.pages a').click(function(){
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: '/arrange_position',
+                                                data: {index:$(this).text(),tel:sessionStorage.getItem('tel'),position:address02},
+                                                timeout: 3000,
+                                                dataType: 'json',
+                                                success: function (data) {
+                                                    getSearchCooker(data);
+
+//                    location.href='arch'
+                                                },
+                                                error: function (error) {
+                                                    /*alert('error')*/
+                                                }
+                                                // }
+
+                                            });
+                                            return false;//阻止提交
+
+                                        })}
+                                    getSearchCooker(data1);
+
+                                },
+                                error: function (error) {
+                                    /*alert框*/swal("未知错误", "", "error");
+                                }
+                                // }
+
+                            })
+                            return false;
+                        }
+                    })
+
+                },
+                error: function (error) {
+                    /*alert框*/swal("未知错误", "", "error");
+                }
+
+
+            })
+        })
+    })
+    function getSearchCooker(data){
+        $('.cooker').empty();
+        for(var i=0;i<=data.cookers.length;i++){
+            $('.cooker').append(
+                    '<a href="/cooker_detail?index='+data.cookers[i].c_id+'" class=".one">'+
+                    '<div class="dishes">'+
+                    '<img src="/images/'+data.cookers[i].c_images+'" alt="">'+
+                    '<div class="cooker_icon">'+
+                    '<img class="dish_cook1" src="/images/'+data.cookers[i].c_icon+'" alt="">'+
+                    '<p class="cooker_name">'+data.cookers[i].c_name+'</p>'+
+                    '</div>'+
+                    '<div class="cooker_level">'+
+                    '<p>擅长:'+data.cookers[i].profession+'</p>'+
+                    '<p>星级：'+
+                    '<span class="glyphicon glyphicon-star txt_color"></span>'+
+                    '<span class="glyphicon glyphicon-star txt_color"></span>'+
+                    '<span class="glyphicon glyphicon-star txt_color"></span>'+
+                    '<span class="glyphicon glyphicon-star txt_color"></span>'+
+                    '<span class="glyphicon glyphicon-star txt_color"></span>'+
+                    '</p>'+
+                    '</div>'+
+                    '<div class="cooker_order">'+
+                    '<p>预订数</p>'+
+                    ' <p class="txt_color">'+data.cookers[i].order_count+'</p>'+
+                    '</div>'+
+                    '</div>'+
+                    '</a>'
+
+            )}
+
+    }
+    function getPages(data) {
+        $(".pages").empty();
+        for(var j=1;j<=data.pageAcount;j++){
+            $('.pages a:first-child').addClass('active');
+            $(".pages").append('<a href="#">'+j+'</a>');
+            $('.pages a').click(function(){
+                $(this).addClass('active').siblings().removeClass('active');
+                $.ajax({
+                    type: 'post',
+                    url: '/search',
+                    data: {index:$(this).text(),search_input:$('.search_input').val()},
+                    timeout: 3000,
+                    dataType: 'json',
+                    success: function (data) {
+
+
+                        getSearchCooker(data)
+
+
+//                    location.href='/search'
+                    },
+                    error: function (error) {
+                        /*alert('error')*/
+                    }
+                    // }
+
+                });
+                return false;//阻止提交
+
+            })}
+
+
+    }
+</script>
+<!--切换地址-->
+
+
+
+</body>
+</html>

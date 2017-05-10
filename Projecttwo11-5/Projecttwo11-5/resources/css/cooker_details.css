@@ -1,0 +1,156 @@
+.cooker_detail_topbar{
+    font-size: 1em;
+}
+
+.details_container{
+    font-size: 1em;
+    line-height: 30px;
+    /*position: absolute;*/
+}
+.details_icon_container{
+    height:30px;
+    text-align: center;
+}
+.details_icon_container img{
+    position: relative;
+    top:-45px;
+    width: 80px;
+    height:80px;
+    border-radius: 50%;
+}
+.details_cookers p{
+    height:20px;
+    text-align: center;
+}
+.details_level{
+    width:50%;
+    margin: auto;
+    /*border:solid 1px green;*/
+    /*box-sizing: border-box;*/
+    height:20px;
+    text-align: center;
+    /*background-color: yellow;*/
+}
+.d_star_level{
+    width:100%;
+    height:30px;
+    /*margin: auto;*/
+    text-align: center;
+    line-height: 30px;
+}
+.d_star_level img{
+    width: 70px;
+    height:18px;
+    padding-top: 5px;
+}
+.score{
+    height:30px;
+    line-height: 20px;
+}
+.cooker_comment{
+    padding: 10px;
+    color: #646464;
+    background-color: #f9f9f9;
+    border-bottom: solid 1px #eee;
+    height:100%;
+}
+.user_img_container{
+     width: 20%;
+     float: left;
+ }
+.user_img_container img{
+    width: 40px;
+    height: 40px;
+    border-radius:50%;
+}
+.user_tel{
+    width: 15%;
+    float: left;
+    line-height: 40px;
+    /*background-color: yellow;*/
+}
+.coment_right_container{
+    line-height: 40px;
+    width: 65%;
+    float: left;
+    text-align: right;
+    color: #ff393d;
+}
+.coment_right_container img{
+    width: 70px;
+    height:18px;
+    padding-top: 5px;
+}
+.comment_content{
+    margin-left: 60px;
+    padding-left: 10px;
+
+}
+.comment_img_container{
+    width: 50%;
+    float: left;
+}
+.comment_date{
+    width: 50%;
+    float: right;
+    text-align: right;
+    margin-top:80px;
+}
+.comment_date1{
+    width: 50%;
+    float: right;
+    text-align: right;
+}
+.comment_img_container img{
+    padding-top: 10px;
+    width: 100px;
+    height:100px;
+
+}
+.comment_total{
+    width:100%;
+    height:40px;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    font-size: 1em;
+    background-color: #f9f9f9;
+}
+.comment_text{
+    width:100%;
+    height: 100%;
+    line-height: 30px;
+    float: left;
+}
+.back_cooker{
+    background-image: url("../images/back.png ");
+   background-size: 20px 20px;
+}
+.cancel_collect{
+    background-image: url("../images/collect-no.png");
+    background-size: 20px 20px;
+}
+.collect{
+    background-image: url("../images/collect-yes.png");
+    background-size: 24px 24px;
+    top:3px;
+
+}
+
+.x-toolbar{
+    background-color: #fff !important;
+}
+.x-toolbar.x-docked-top{
+    border-bottom:none !important;
+    box-shadow: 0px 1px 3px #ddd;
+}
+.cooker_detail_dish_img{
+    height:260px;
+}
+.chose_dishes_btn{
+    background-color: #ff393d !important;
+    height:50px !important;
+    border-radius: 0 !important;
+}
+
+

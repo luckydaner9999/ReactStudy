@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>私人厨师|评价</title>
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.min.css">
+    <link rel="stylesheet" href="/stylesheets/header.min.css">
+    <link rel="stylesheet" href="/stylesheets/comment.min.css">
+    <link rel="stylesheet" href="/stylesheets/sweet-alert.min.css">
+</head>
+<body>
+<%include header.html%>
+<form  class="upload">
+<div class="content clearfix">
+    <input type="text" name="cid" class="cid" readonly>
+    <input type="text" name="time" class="time" readonly>
+    <p class="user_comment">亲爱的 ：<input type="text" id="u_t" name="u_t" class="u_t" readonly ></p>
+
+    <!--打分开始-->
+    <div class="star_level">
+        <span class="level_explain">请为您的私人厨师打分：</span>
+        <div id="star2"></div>
+        <div id="result2"></div>
+       <input type="text" class="ss" name="star">  分
+    </div>
+    <!--打分结束-->
+
+
+    <textarea class="comment_text " placeholder="请从这里开始输入..." contenteditable="true" name="content"></textarea>
+    <p class="argument">请输入不少于150字</p>
+    <div class="load_img clearfix">
+        <div class="figure">
+            <div class="upload_img1">
+                <input type="file" id="exampleInputFile" name="fileImage">
+            </div>
+        </div>
+        <div class="img_preview"></div>
+        <button class="btn" type="submit">发送</button>
+    </div>
+</div>
+</form>
+<%include footer.html%>
+
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="/javascripts/jquery.raty.js"></script>
+<script src="/javascripts/sweet-alert.min.js"></script>
+<!--定位-->
+<script>
+    $(function () {
+        $('.position_txt').html(localStorage.getItem('city'));
+    })
+</script>
+<!--定位-->
+<!--star level-->
+<script>
+    rat('star1','result1',10);
+    rat('star2','result2',1);
+    function rat(star,result,m){
+
+        star= '#' + star;
+        result= '#' + result;
+        $(result).hide();//将结果DIV隐藏
+
+        $(star).raty({
+            hints: ['10','20', '30', '40', '50','60', '70', '80', '90', '100'],
+            path: "css/img",
+            starOff: 'star-off-big.png',
+            starOn: 'star-on-big.png',
+            size: 24,
+            start: 40,
+            showHalf: true,
+            target: result,
+            targetKeep : true,//targetKeep 属性设置为true，用户的选择值才会被保持在目标DIV中，否则只是鼠标悬停时有值，而鼠标离开后这个值就会消失
+            click: function (score, evt) {
+                //第一种方式：直接取值
+                $('.ss').val(score*m);
+            }
+        });
+
+        /*第二种方式可以设置一个隐蔽的HTML元素来保存用户的选择值，然后可以在脚本里面通过jQuery选中这个元素来处理该值。 弹出结果
+         var text = $(result).text();
+         $('img').click(function () {
+         if ($(result).text() != text) {
+         alert('你的评分是'+$(result).text()/m+'分');
+         alert(result);
+         return;
+         }
+         });*/
+    }
+</script>
+<!--star level-->
+<!--预览图片-->
+<script>
+
+    $(function(){
+        var url=document.location.href;
+        var url1=url.split("=")[1];
+        $('.cid').val(url1 )
+        var d = new Date();
+        var str = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()
+        $('.time').val(str)
+        var u_t=$('#u_t').val(sessionStorage.getItem('tel'))
+        $('.upload_img1 input').change(function(e){
+            var file=e.target.files[0]
+            var img=new Image();
+            img.src=URL.createObjectURL(file);
+            var url=img.src;
+            var $img=$(img);
+            img.onload=function(){
+                URL.revokeObjectURL(url);
+                $('.img_preview').empty().append($img);
+            }
+            preview(file)
+        })
+        $('.upload').submit(function(){
+            var formdata=new FormData($('.upload')[0])
+            $.ajax({
+                type: 'post',
+                url: '/comment',
+                data:formdata ,
+                timeout: 3000,
+                async:false,
+                cache:false,
+                contentType:false,
+                processData:false,
+                success: function (data) {
+                   swal("谢谢您的评价","","success");
+                },
+                error: function (error) {
+                    /* alert('error')*/
+                }
+                // }
+
+            });
+            return false;//阻止提交
+        })
+
+    })
+
+</script>
+<!--预览图片-->
+</body>
+</html>

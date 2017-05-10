@@ -1,0 +1,193 @@
+*{
+    font-family: '微软雅黑' !important;
+    font-size: 1em;
+    text-shadow: none !important;
+    font-weight: normal !important;
+}
+.order_btn{
+    border:none !important;
+    line-height: 30px !important;
+    /*background-color: black !important;*/
+    border-radius: 0px !important;
+    color: black !important;
+}
+.cooker_topbar{
+    background-image: none !important;
+    background:none !important;
+    border:none !important;
+}
+.clearfix:after{
+    content:'';
+    height:0;
+    display: block;
+    clear: both;
+}
+.clearfix{
+    zoom:1;
+}
+/*厨师模块开始*/
+.cooker_content_top{
+    text-align: center;
+    color: #ff484d;
+    padding-top: 10px;
+}
+.cooker_top_panel{
+    width: 100%;
+    background-color: #ff484d;
+    height:40px;
+    /*text-align: center;*/
+    line-height: 40px;
+    color: white;
+}
+.cooker_title_back{
+    width:10%;
+    line-height: 40px;
+    color: white;
+    /*border: solid 1px black;*/
+    /*box-sizing: border-box;*/
+    float: left;
+}
+.cooker_title_cooker{
+    width:50%;
+    line-height: 40px;
+    text-align: right;
+    color: white;
+    font-size: 1em;
+    font-weight: 700;
+    /*border: solid 1px black;*/
+    /*box-sizing: border-box;*/
+    float: left;
+}
+
+
+
+.cooker_sort_container{
+    width:70%;
+    margin: auto;
+    height: 40px;
+    background-color: white;
+}
+.cooker_choice_cuisine,.cooker_integration_order{
+    width: 60%;
+    height: 40px;
+    /*border: solid 1px red;*/
+    /*box-sizing: border-box;*/
+    margin: auto;
+}
+.cooker_div_integration,.cooker_div_cuisine{
+    width:80%;
+    float: left;
+    text-align: right;
+    line-height: 40px;
+    font-size: 0.8em;
+    color: black;
+    /*border: solid 1px blue;*/
+    /*box-sizing: border-box;*/
+}
+.integration_down_container,.choice_cuisine_down_container{
+    width: 20%;
+    float: left;
+    text-align: left;
+    line-height: 40px;
+}
+.integration_down_container img,.choice_cuisine_down_container img{
+   width: 1em;
+   height: 1em;
+}
+
+
+
+
+/*Cooker_details开始*/
+.carousel_img{
+    width:100%;
+    height: 220px;
+}
+.star_level{
+    width: 60%;
+    float: left;
+    text-align: right;
+}
+.details_comment_count{
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.9em;
+    text-align: center;
+
+}
+.user_tel{
+    width:30%;
+    float: left;
+   line-height: 50px;
+}
+
+.comment_text{
+    width:100%;
+    height: 100%;
+    line-height: 30px;
+    /*padding-top: 20px;*/
+    float: left;
+}
+.chose_dishes_btn{
+    background-image: none !important;
+    background-color: #ff484d !important;
+    border:none !important;
+    width: 98% !important;
+    height:40px !important;
+    color: white !important;
+    margin: auto !important;
+}
+.back{
+    background: url("../images/返回.png");
+    width: 24px;
+    height: 24px;
+}
+.collect{
+    background: url("../images/shoucang.png");
+    width: 24px;
+    height: 24px;
+}
+/*.details_topbar{
+    background-image: none !important;
+    background: none !important;
+    border:none !important;
+}*/
+.search_dishes{
+    width: 100% !important;
+    height:30px !important;
+    margin: 5px !important;
+    margin-left: 10px !important;
+    box-sizing: border-box !important;
+}
+
+.x-field-input .x-clear-icon, .x-field-input .x-reveal-icon{
+    top:30% !important;
+}
+.x-field .x-field-input, .x-field .x-input-el{
+    background: none;
+    border:none;
+    padding:0em 0.8em 0.8em 0.5em ;
+}
+.cancel_btn{
+    margin-left: 0px !important;
+    margin-right: 10px !important;
+    margin-top: 5px; !important;
+    margin-bottom: 5px; !important;
+    border: none !important;
+    height:30px !important;
+    line-height:30px !important;
+    background: none !important;
+}
+
+.chose_btn button{
+    width: 80px;
+    background-color: red;
+    color: white;
+    border: none;
+    height:40px;
+    font-size:0.8em;
+}
+
+
+/*dishes结束*/
+

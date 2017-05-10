@@ -1,0 +1,101 @@
+.clearfix:after{
+    content:" ";
+    display:block;
+    clear:both;
+    height:0
+}
+.clearfix{
+    zoom:1;
+}
+.main_panel_bgcolor{
+    padding:0;
+    margin:0;
+    height:100%;
+}
+.main_topbar{
+    background-image: none !important;
+    background-color: #ffffff !important;
+    border:none !important;
+    box-shadow: 0px 1px 3px #ccc !important;
+}
+.main_position,.main_service{
+    background-image: none !important;
+    background-color: transparent !important;
+    font-size: 0.8em !important;
+    color: #333;
+}
+.main_locate_img{
+    width:24px;
+    height:24px;
+    margin-top: 5px;
+}
+.main_locate_city{
+    position: relative;
+    top:-5px
+}
+.main_banner_img{
+    width:100%;
+    height:200px
+}
+.main_cuisine_css{
+    margin:8px 0 8px 0;
+    min-height:80px;
+    padding:10px;
+}
+.main_cuisine{
+    text-align: center;
+}
+.main_cuisine>img{
+    width: 40px !important;
+    height:40px !important;
+}
+.main_cuisine>p{
+    color: #444;
+    font-size:0.9em
+}
+.main_private_order,.main_private_cooker{
+    margin:8px 0 8px 0;
+    padding:10px;
+    width:100%;
+    height:100%;
+}
+.main_private_title{
+    text-align: center;
+    margin-bottom: 8px;
+}
+.main_private_title>span{
+    font-weight: bolder;
+}
+.main_hot_private{
+    margin-bottom:8px;
+    height: 150px;
+    width:100%;
+    border-radius:5px;
+}
+.main_banner{
+    height:200px;
+    max-height: 260px;
+}
+.main_banner_img{
+    background-size: cover;
+}
+.x-html{
+    padding: 0 !important;
+}
+.x-tabbar.x-docked-bottom{
+    min-height: 3.6em !important;
+    border-top-width: 0px !important;
+}
+.x-tab .x-button-icon{
+    width:1.7em !important;
+    height:1.7em !important;
+}
+.x-tab .x-button-label{
+    line-height: 1.8em !important;
+}
+.sweet-alert h2{
+    font-size: 20px !important;
+}
+.sweet-alert button{
+    margin:5px !important;
+}

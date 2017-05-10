@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>私人厨师</title>
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.min.css">
+    <link rel="stylesheet" href="/stylesheets/header.min.css">
+    <link rel="stylesheet" href="/stylesheets/order.min.css">
+    <link rel="stylesheet" href="/stylesheets/sweet-alert.min.css">
+</head>
+<body>
+    <%include header.html%>
+    <div class="content">
+     <div class="order_list">
+        <div class="order_left ">
+            <span>我的订单</span>
+        </div>
+        <div>
+         <!--订单内容start-->
+        <div class="order_content">
+
+            <%
+            if(res.length==0){
+            %>
+            <div>对不起,没有匹配的结果</div>
+
+
+            <%
+            }else{
+            for(var i=0;i<=res.length-1;i++){
+            %>
+            <div>
+            <div class="order_message clearfix">
+                 <div class="cooker_icon">
+                     <img src="/images/<%=res[i].c_icon%>" alt="">
+                 </div>
+                 <div class="cooker_info">
+                     <input type="hidden" value="<%=res[i].c_id%>" class="c_id">
+                     <p>私人厨师: <a><%=res[i].c_name%></a></p>
+                     <p><span class="glyphicon glyphicon-earphone">: <a><%=res[i].ctelephone%></a></span></p>
+                 </div>
+                 <div class="order_con">
+                     <p>套餐价格：<span class="price"><%=res[i].price%>元</span></p>
+                     <p>订餐时间：<%=res[i].time%><span></span></p>
+                     <p>订单编号：<%=res[i].number%><span></span></p>
+                 </div>
+                 <div class="order_add">
+                     <a href="#" class="delete_order">删除订单
+                         <p><%=res[i].number%></p>
+                     </a><br>
+                     <%if(res[i].c_id<100){%>
+                     <a href="/cooker_detail?index=<%=res[i].c_id%>" class="again">再来一单</a>
+
+                     <% }%>
+                 </div>
+            </div>
+            <!--订单详情-->
+            <div class="order_message_list clearfix">
+                <div class="order_dishes ">
+                    <div class="dishes_name">
+                        <p>菜名 : <a><%=res[i].dishes_name%></a></p>
+                    </div>
+                    <div class="contact">
+                        <p><span><%=res[i].address%></span></p>
+                        <p>姓名：<span><%=res[i].name%></span></p>
+                        <p>电话：<span><%=res[i].tel%></span></p>
+                        <p>备注：<span><%=res[i].message%></span></p>
+                    </div>
+                </div>
+                <div class="order_state">
+                    <img src="/images/callcenter_girls_glasses.png" alt="">
+                    <%if(res[i].c_id<100){%>
+                    <a href="/comment?cid=<%=res[i].c_id%>">欢迎您随时反馈对大厨的评价</a>
+                    <% }%>
+                </div>
+            </div>
+            </div>
+
+            <%
+            }
+            }
+            <!--end else-->
+            %>
+        </div>
+        <!--订单内容end-->
+        </div>
+   </div>
+    </div>
+<%include footer.html%>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="/javascripts/myAccount.min.js"></script>
+<script src="/javascripts/sweet-alert.min.js"></script>
+    <script>
+        $(function () {
+            $('.order_message_list').css({display:'none'});
+            $('.order_message').click(function () {
+                $(this).siblings().slideToggle('fast');
+            })
+        })
+    </script>
+    <!--删除订单-->
+    <script>
+
+        $('.delete_order ').click(
+
+                function(){
+                    $.ajax({
+                        type: 'get',
+                        url: '/delete_menu',
+                        data:{number:$(this).find('p').html().trim()},
+                        timeout: 3000,
+                        dataType:'json',
+                        start: function () {
+                        },
+                        success: function (result) {
+                            if(result.res==0){
+                                window.location.reload()
+                            }else{
+                                /*alert('删除失败')*/
+                                swal("删除失败","","error")
+                            }
+
+
+                        },
+                        error: function (error) {
+                            /*alert('error')*/
+                            swal("未知错误","","error")
+                        }
+
+                    })
+                    return false;
+                }
+        )
+
+    </script>
+
+
+</body>
+</html>

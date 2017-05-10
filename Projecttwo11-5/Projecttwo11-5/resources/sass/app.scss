@@ -1,0 +1,43 @@
+// The following two lines import the default Sencha Touch theme. If you are building
+// a new theme, remove them and the add your own CSS on top of the base CSS (which
+// is already included in your app.json file).
+$ios7-blue: #ff393d;
+.index{
+  background: url("../images/index.png") no-repeat;
+  background-size: 24px 24px !important;
+}
+.index:hover{
+  background: url("../images/index-fill.png") no-repeat;
+  background-size: 24px 24px !important;
+}
+.cooker{
+  background: url("../images/cooker.png") no-repeat;
+  background-size: 24px 24px !important;
+}
+.cooker:hover{
+  background: url("../images/cooker-fill.png") no-repeat;
+  background-size: 24px 24px !important;
+}
+.private{
+  background: url("../images/private.png") no-repeat;
+  background-size: 24px 24px !important;
+}
+.private:hover{
+  background: url("../images/private-fill.png") no-repeat;
+  background-size: 24px 24px !important;
+}
+.my_center{
+  background: url("../images/user.png") no-repeat;
+  background-size: 24px 24px !important;
+}
+.my_center:hover{
+  background: url("../images/user-fill.png") no-repeat;
+  background-size: 24px 24px !important;
+}
+@import 'sencha-touch/cupertino';
+@import 'sencha-touch/cupertino/all';
+
+// Custom code goes here..
+
+// Examples of using the icon mixin:
+// @include icon('user');

@@ -1,0 +1,49 @@
+/*登录*/
+.login_close{
+    padding:10px;
+    height:50px;
+}
+.login_close_img{
+    width:30px;
+    height:30px;
+}
+.login_logo{
+    text-align:center;
+    min-height:130px;
+    margin-top: 20px;
+}
+.login_form{
+    width:90%;
+    height:300px;
+    margin:auto;
+    border:none;
+}
+.login_logo_img{
+    width:80px;
+    height:80px;
+    margin:auto;
+    text-align: center;
+}
+.btn_login_submit{
+    border:solid 1px #ff393d !important;
+    background-color: #ff393d !important;
+    min-height: 2.5em;
+    padding: .7em .4em .4em .4em;
+}
+.btn_login_submit:active{
+    border:solid 1px #ff393d !important;
+    background-color: transparent !important;
+}
+.x-button.x-button-action .x-button-label{
+    color: #fff !important;
+}
+.x-button.x-button-action .x-button-label:active{
+    color: #ff393d !important;
+}
+.login_go_register{
+    display:block;
+    color:#666;
+    line-height: 30px;
+    text-align: right;
+}
+/*登录*/

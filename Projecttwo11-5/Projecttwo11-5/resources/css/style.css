@@ -1,0 +1,100 @@
+*{
+    font-family: '微软雅黑' !important;
+    text-shadow: none !important;
+    font-weight: normal !important;
+    font-size: 1em;
+}
+.x-title .x-innerhtml{
+    font-size: 1.2em;
+    color: #000;
+}
+.x-toolbar .x-button .x-button-label{
+    color:#333;
+}
+.x-carousel-indicator span.x-carousel-indicator-active{
+    background-color: #ff393d !important;
+}
+
+.x-form-fieldset .x-form-fieldset-inner{
+    border:none !important;
+}
+.x-form-fieldset .x-field:before{
+    border-bottom: none !important;
+}
+.x-field-input{
+    border:none !important;
+    border-bottom:solid 1px #000 ;
+    border-radius: 0px !important;
+}
+.x-layout-box>.x-layout-box-item{
+    display: -webkit-box !important;
+}
+.x-input-el.x-form-field.x-input-text,
+.x-input-el.x-form-field.x-input-password{
+    text-align: center !important;
+}
+.x-button{
+    border:none !important;
+}
+.x-form .x-scroll-container{
+    background-color: #FFFFFF !important;
+}
+
+
+.x-msgbox{
+    background-image: none !important;
+    background-color: #FFFFFF !important;
+}
+.x-dock.x-dock-horizontal{
+    display: none;
+}
+.x-msgbox .x-msgbox-title .x-title{
+    font-size: .9em !important;
+    color: #666 !important;
+}
+.x-msgbox .x-msgbox-title{
+    height:30px;
+    line-height: 30px;
+}
+.x-msgbox .x-msgbox-buttons .x-toolbar-inner .x-button{
+    padding:0 38%;
+    margin-top: 0 !important;
+}
+.x-msgbox .x-msgbox-buttons .x-toolbar-inner .x-button .x-button-label{
+    color: #FFFFFF !important;
+    background-color: #ff393d !important;
+    border-radius: 5px;
+    padding: 5px 15px !important;
+    margin-top: 0px;
+}
+.x-tab{
+    width:22%;
+}
+.x-html{
+    padding: 0 !important;
+}
+.x-tabbar.x-docked-bottom{
+    box-shadow: 0px -3px 5px #ddd !important;
+}
+.x-tab .x-button-label{
+    line-height: 2em !important;
+}
+.x-tab.x-tab-active .x-button-label{
+    color: #ff393d !important;
+}
+
+.x-field-radio .x-field-mask::before{
+    position: absolute!important;
+    left:0!important;
+
+}
+.x-field-radio .x-field-mask::after{
+    position: absolute!important;
+    left:5px!important;
+}
+.x-form-label{
+    background-color:#fff!important;
+}
+.x-title .x-innerhtml{
+    color: #fff;
+}

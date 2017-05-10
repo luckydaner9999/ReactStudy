@@ -1,0 +1,58 @@
+.add_address_table{
+    background-image: none !important;
+    background-color: #ffffff !important;
+    border:none !important;
+    width: 96%;
+    margin: auto;
+    border-radius: 0px;
+    margin-top: 20px;
+    font-size: 0.8em !important;
+    color: #646464;
+}
+.add_address_address{
+    padding-top: 20px;
+}
+.add_address_back{
+    background-image: none !important;
+    background-color: transparent !important;
+    font-size: 1em !important;
+    color: #333;
+}
+
+.add_address_back_img{
+    width:24px;
+    height:24px;
+    margin-top: 2px;
+}
+
+.add_address_table table{
+    width:90%;
+    margin: 10px auto;
+
+}
+
+.sex_boy,.sex_girl{width: 30%}
+.add_address_table table tr{
+    line-height: 50px;
+    border-bottom:solid 1px #ddd;
+}
+.add_address_table table tr td input{
+    border:none !important;
+    line-height: 50px;
+
+    border-bottom: solid 1px #ddd !important;
+    margin-bottom: -1px;
+}
+.add_address_sex{border-bottom:none!important}
+
+#button_tijiao{
+    width:100px;
+    height: 40px;
+    background-color:#ff393d;
+    position: absolute;
+    left: 50%;
+    margin-left:-50px;
+    border:none!important;
+    color: #fff;
+    border-radius:5px;
+}

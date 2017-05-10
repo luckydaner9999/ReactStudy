@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html manifest="" lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>private_cooker</title>
+    <style type="text/css">
+         /**
+         * Example of an initial loading indicator.
+         * It is recommended to keep this as minimal as possible to provide instant feedback
+         * while other resources are still being loaded for the first time
+         */
+       /* body{
+            font:normal 50% sansserif;
+        }
+
+         :root{font:normal 100% san-serif;}*/
+         *{
+             font-family: '微软雅黑' !important;
+             text-shadow: none !important;
+             font-weight: normal !important;
+             font-size: 1em;
+         }
+         .x-button{
+             border:none !important;
+         }
+         #dateshadow{
+             opacity: 0.2;
+         }
+         .x-tabbar.x-docked-bottom{
+             box-shadow: 0px -3px 5px #ddd !important;
+         }
+         .x-tab .x-button-label{
+             line-height: 2em !important;
+         }
+         .x-tab.x-tab-active .x-button-label{
+             color: #ff393d !important;
+         }
+         .x-tab{
+             width:22%;
+         }
+         .x-carousel-indicator span.x-carousel-indicator-active{
+             background-color: #ff393d !important;
+         }
+         .x-title .x-innerhtml{
+             font-size: 1.2em !important;
+         }
+         .x-list-paging .x-list-paging-msg{
+             display: none !important;
+         }
+       /* !*form*!
+         .x-form-fieldset .x-form-fieldset-inner{
+             border:none !important;
+         }
+         .x-form-fieldset .x-field:before{
+             border-bottom: none !important;
+         }
+         .x-field-input{
+             border:none !important;
+             border-bottom:solid 1px #000 !important;
+             border-radius: 0px !important;
+         }
+         .x-layout-box>.x-layout-box-item{
+             display: -webkit-box !important;
+         }
+         .x-input-el.x-form-field.x-input-text,
+         .x-input-el.x-form-field.x-input-password{
+             text-align: center !important;
+         }
+         .x-form .x-scroll-container{
+             background-color: #FFFFFF !important;
+         }
+        !*form*!*/
+
+         html, body {
+            height: 100%;
+            background-image:url('resources/images/start_image.jpg');
+             background-size: 100% 100%;
+
+        }
+
+        #appLoadingIndicator {
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            text-align: center;
+            width: 100%;
+            height: 30px;
+            -webkit-animation-name: appLoadingIndicator;
+            -webkit-animation-duration: 0.5s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: linear;
+        }
+
+        #appLoadingIndicator > * {
+            background-color: #FFFFFF;
+            display: inline-block;
+            height: 30px;
+            -webkit-border-radius: 15px;
+            margin: 0 5px;
+            width: 30px;
+            opacity: 0.8;
+        }
+
+        @-webkit-keyframes appLoadingIndicator{
+            0% {
+                opacity: 0.8
+            }
+            50% {
+                opacity: 0
+            }
+            100% {
+                opacity: 0.8
+            }
+        }
+
+    </style>
+
+    <!--<link rel="stylesheet" href="resources/css/style.css">-->
+    <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="stylesheet" href="resources/css/service.css">
+    <link rel="stylesheet" href="resources/css/login.css">
+    <link rel="stylesheet" href="resources/css/register.css">
+    <link rel="stylesheet" href="resources/css/private.css">
+    <link rel="stylesheet" href="resources/css/private_meal.css">
+    <link rel="stylesheet" href="resources/css/private_order.css">
+    <link rel="stylesheet" href="resources/css/pay.css">
+    <link rel="stylesheet" href="resources/css/common.css">
+    <link rel="stylesheet" href="resources/css/personal.css">
+
+    <link rel="stylesheet" href="resources/css/ext.ux.ratingfield.css" >
+    <link rel="stylesheet" href="resources/css/lArea.css">
+    <link rel="stylesheet" href="resources/css/add_address.css">
+
+    <link rel="stylesheet" href="resources/css/cooker.css">
+    <!--<link rel="stylesheet" href="resources/css/Cookers.css">-->
+    <link rel="stylesheet" href="resources/css/cooker_details.css">
+    <link rel="stylesheet" href="resources/css/cooker_dishes.css">
+    <link rel="stylesheet" href="resources/css/cooker_order.css">
+
+    <link rel="stylesheet" href="resources/css/sweet-alert.css">
+    <script src="resources/js/sweet-alert.min.js"></script>
+    <!-- The line below must be kept intact for Sencha Command to build your application -->
+    <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <!--<script src="bootstrap.js"></script>-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=iLnnh3tvhE3HLt9Se0M45oRjxjVDQoXd"></script>
+    <script src="resources/js/getPosition.js"></script>
+    <script src="resources/js/iscroll.js"></script>
+    <script src="resources/js/date.js"></script>
+    <script src="resources/js/lArea.js"></script>
+</head>
+<body>
+    <div id="appLoadingIndicator">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>
